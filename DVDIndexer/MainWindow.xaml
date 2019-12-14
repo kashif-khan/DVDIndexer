@@ -8,12 +8,14 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Label Content="FilePath" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox HorizontalAlignment="Left" Name="txtInput" Margin="92,49,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="608" Height="22"/>
-        <Button Content="Start" Margin="48,175,90,212" Click="Button_Click_2"/>
-        <Button Content="Browse" Margin="733,42,10,352" Click="Button_Click"/>
+        <TextBox HorizontalAlignment="Left" Name="txtInput" Margin="94,49,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="608" Height="22"/>
+        <Button Content="Browse" HorizontalAlignment="Right" Margin="733,42,10,352" Click="Button_Click"/>
+
         <Label Content="FilePath" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox HorizontalAlignment="Left" Name="txtOutput" Margin="92,103,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="608" Height="22"/>
-        <Button Content="Browse" Name="btnStart" Margin="733,96,10,298" Click="Button_Click_1"/>
+        <TextBox HorizontalAlignment="Left" Name="txtOutput" Margin="98,103,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="608" Height="22"/>
+        <Button Content="Browse" HorizontalAlignment="Right" Margin="733,96,10,298" Click="Button_Click_1"/>
+
+        <Button Content="Start" HorizontalAlignment="Stretch"  Name="btnStart" Margin="48,175,90,212" Click="Button_Click_2"/>
 
     </Grid>
 </Window>

@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -28,33 +29,63 @@ namespace DVDIndexer
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var selectedPath = string.Empty;
+            selectedPath = GetFolderPath(selectedPath);
+            txtInput.Text = selectedPath;
+        }
+
+        private static string GetFolderPath(string selectedPath)
+        {
+            var folderBrowser = new FolderBrowserDialog();
+            var result = folderBrowser.ShowDialog();
+            if (result == System.Windows.Forms.DialogResult.OK)
+            {
+                selectedPath = folderBrowser.SelectedPath;
+            }
+
+            return selectedPath;
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            var selectedPath = string.Empty;
+            selectedPath = GetFolderPath(selectedPath);
+            txtOutput.Text = System.IO.Path.Combine(selectedPath, "result.json");
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private async void Button_Click_2(object sender, RoutedEventArgs e)
         {
             btnStart.IsEnabled = false;
             var filePath = txtInput.Text ?? @"..\";
 
             var outputPath = txtOutput.Text ?? @"..\";
 
-            List<FileInfo> allfiles = Directory.GetFiles(filePath, "*.*", SearchOption.AllDirectories).Select(x => new FileInfo(x)).ToList();
+            FileList filelist = await GetFiles(filePath, outputPath);
 
-            FileList filelist = File.Exists(outputPath) ? JsonConvert.DeserializeObject<FileList>(File.ReadAllText(outputPath)) : new FileList();
-
-            foreach (var file in allfiles)
+            await Task.Run(async () =>
             {
-                filelist.Add(new FileInfoSerializable(file));
-            }
+                var json = JsonConvert.SerializeObject(filelist);
 
-            var json = JsonConvert.SerializeObject(filelist);
-
-            File.WriteAllText(outputPath, json);
+                await File.WriteAllTextAsync(outputPath, json);
+            });
             btnStart.IsEnabled = true;
+        }
+
+        private static async Task<FileList> GetFiles(string filePath, string outputPath)
+        {
+
+            return await Task.Run(async () =>
+             {
+                 List<FileInfo> allfiles = Directory.GetFiles(filePath, "*.*", SearchOption.AllDirectories).Select(x => new FileInfo(x)).ToList();
+
+                 FileList filelist = File.Exists(outputPath) ? JsonConvert.DeserializeObject<FileList>(await File.ReadAllTextAsync(outputPath)) : new FileList();
+                 foreach (var file in allfiles)
+                 {
+                     filelist.Add(new FileInfoSerializable(file));
+                 }
+
+                 return filelist;
+             });
         }
     }
 }
