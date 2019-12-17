@@ -7,15 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label Content="FilePath" HorizontalAlignment="Left" Margin="10,45,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox HorizontalAlignment="Left" Name="txtInput" Margin="94,49,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="608" Height="22"/>
-        <Button Content="Browse" HorizontalAlignment="Right" Margin="733,42,10,352" Click="Button_Click"/>
+        <Label Content="Input Folder:" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="77"/>
+        <TextBox HorizontalAlignment="Left" Name="txtInput" Margin="99,51,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="608" Height="22"/>
+        <Button Content="Browse" HorizontalAlignment="Right" Margin="0,42,21,352" Click="Button_Click"/>
 
-        <Label Content="FilePath" HorizontalAlignment="Left" Margin="10,99,0,0" VerticalAlignment="Top" Width="77"/>
-        <TextBox HorizontalAlignment="Left" Name="txtOutput" Margin="98,103,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="608" Height="22"/>
-        <Button Content="Browse" HorizontalAlignment="Right" Margin="733,96,10,298" Click="Button_Click_1"/>
+        <Label Content="Output Path:" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="77"/>
+        <TextBox HorizontalAlignment="Left" Name="txtOutput" Margin="99,105,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="608" Height="22"/>
+        <Button Content="Browse" HorizontalAlignment="Right" Margin="0,96,21,298" Click="Button_Click_1"/>
 
-        <Button Content="Start" HorizontalAlignment="Stretch"  Name="btnStart" Margin="48,175,90,212" Click="Button_Click_2"/>
+        <Button Content="Start"  Name="btnStart" Margin="48,210,90,177" Click="btnStart_Click"/>
+        <Label Content="UniqueId:" HorizontalAlignment="Left" Margin="10,167,0,0" VerticalAlignment="Top" Width="77"/>
+        <TextBox HorizontalAlignment="Left" x:Name="txtOutput_Copy" Margin="99,169,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="608" Height="22"/>
+        <Button Content="Random ID" HorizontalAlignment="Right" Margin="0,160,10,234" Click="btnRandom_Click"/>
 
     </Grid>
 </Window>
